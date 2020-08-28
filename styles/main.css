@@ -5,19 +5,22 @@
 body {
   margin: 0px;
   overflow: hidden;
-  color: white;
+  color: #08fbcd;
   text-align: center;
 }
 
 h1 {
-  position: absolute;
+  /* position: -ms-page; */
   width: 100%;
   z-index: 1;
   font-size: 1.5rem;
+  color: #08fbcd;
+  /* position: absolute; */
 }
 
 a {
   color:white;
+  position: absolute;
 }
 
 a:hover {
@@ -28,10 +31,7 @@ a:hover {
   position: absolute;
   width: 100%;
   height: 100%;
+  display: block;
 }
 
-canvas {
-  width: 100%;
-  height: 100%;
-}
 

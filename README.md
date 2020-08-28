@@ -12,3 +12,11 @@ It might be interesting to implement a sense of speed with 'speed' with cartoone
 ```
 
 > navigate to port. Servez defaults to localhost:8080
+
+### Extensibility
+
+_It might be interesting to implement a sense of speed with 'speed' with cartoonesque lines with modulating opacity and length, perhaps with the backdrop of the earth emitting a low glow as it travels on its lonely journey._  
+
+_explore ways to add testing_  
+
+_Give the object(s) Vector3 movement (orbit?)_
