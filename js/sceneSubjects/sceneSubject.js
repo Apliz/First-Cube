@@ -17,3 +17,25 @@ function SceneSubject( scene ) {
 
   };
 };
+
+function Earth( scene ) {
+  const radius = 3;
+  const width = 64;
+  const height = 64;
+  const phiStart = 0;
+
+  const geometry = new THREE.SphereBufferGeometry( radius, width, height);
+  const earthTexture = new THREE.TextureLoader().load(
+    'textures/2k_earth_daymap.jpg'
+  );
+  const material = new THREE.MeshStandardMaterial( {map: earthTexture, antialias: true, alpha: true}  );
+
+  earthmesh = new THREE.Mesh( geometry, material );
+
+  earthmesh.position.set( -3, 0, 0 ); 
+  scene.add(earthmesh)
+
+  this.update = function( time ) {
+    earthmesh.rotation.y += 0.02;
+  };
+};

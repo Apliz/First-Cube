@@ -50,6 +50,7 @@ function SceneManager( canvas ) {
   function createSceneSubjects(scene) {
   const sceneSubjects = [
     new GeneralLights(scene),
+    new Earth( scene ),
     new SceneSubject(scene)
   ];
   
@@ -60,8 +61,11 @@ function SceneManager( canvas ) {
   this.update = function() {
     const elapsedTime = clock.getElapsedTime();
 
-    for (subject of sceneSubjects) {
-      subject.update( elapsedTime );
+    // for (subject of sceneSubjects) {
+    // }
+    for(let i=0; i<sceneSubjects.length; i++) {
+      sceneSubjects[i].update( elapsedTime );
+
     }
     renderer.render( scene, camera );
   };
