@@ -1,81 +1,28 @@
-let container;
-let camera;
-let renderer;
-let scene;
-let mesh;
+const canvas = document.getElementById( 'canvas' );
 
-const windowWidth = window.innerWidth;
-const windowHeight = window.innerHeight;
+// new sceneManager 
+const sceneManager = new SceneManager( canvas );
 
-function init() {
-  container = document.querySelector( '#scene-container' );
+bindEventListeners();
 
-  // document.body.querySelector( body );
-  scene = new THREE.Scene();
+render();
 
-  scene.background = new THREE.Color( 0x8fbcd );
-
-  const fov = 75;
-  const aspect = container.clientWidth / container.clientHeight;
-  const near = 0.1;
-  const far = 1000;
-
-  camera = new THREE.PerspectiveCamera( fov, aspect, near, far );
-
-  camera.position.set( 0, 0, 5 );
-  
-  const geometry = new THREE.BoxBufferGeometry( 2, 2, 2 );
-  const material = new THREE.MeshStandardMaterial( {color: 0x800080} );
-  mesh = new THREE.Mesh ( geometry, material );
-  
-  scene.add( mesh );
-
-  const color = 0xffffff;
-  const intensity = 4;
-  const light = new THREE.DirectionalLight( color, intensity );
-  light.position.set( 10, 10, 10 );
-  
-  scene.add( light );
-  
-  renderer = new THREE.WebGLRenderer();
-  
-  renderer.setSize( container.clientWidth, container.clientHeight );
-  renderer.setPixelRatio( window.devicePixelRatio );
-
-  
-  document.body.appendChild( renderer.domElement );
-
-
-
+function bindEventListeners() {
+  window.onresize = resizeCanvas;
+  resizeCanvas();
 };
 
-function update() {
+function resizeCanvas() {
+  canvas.style.width = '100%';
+  canvas.style.height = '100%';
 
-  mesh.rotation.x += 0.02;
-  mesh.rotation.y += 0.02;
-  mesh.rotation.z += 0.02;
+  canvas.width = canvas.offsetWidth;
+  canvas.height = canvas.offsetHeight;
 
-};
+  sceneManager.onWindowResize();
+}
 
 function render() {
-  renderer.render( scene, camera );
+  requestAnimationFrame( render );
+  sceneManager.update();
 };
-
-window.addEventListener( 'resize', onWindowResize );
-function onWindowResize() {
-
-  camera.aspect = container.clientWidth / container.clientHeight;
-
-  camera.updateProjectionMatrix();
-
-  renderer.setSize( container.clientWidth, container.clientHeight );
-
-};
-
-
-init();
-
-renderer.setAnimationLoop( () => {
-  update();
-  render();
-} );
